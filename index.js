@@ -1,8 +1,10 @@
 import express from 'express';
 import { Server } from 'socket.io';
 import * as path from "path";
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 const server = app.listen(3000);
 const socket = new Server(server);
 const __dirname = path.resolve();
