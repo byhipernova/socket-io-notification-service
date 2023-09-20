@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+</head>
+<body>
+<div class="messages"></div>
+<script>
+    // send header token
+    rooms = ['room1', 'room2', 'room3', 'room4', 'room5'];
+    const socket = io('http://localhost:3000', {
+        auth: {
+            token: rooms[Math.floor(Math.random() * rooms.length)]
+        }
+    });
+    socket.on('message', data => {
+        console.log(data);
+        document.querySelector('.messages').innerHTML += `<div>${data.message} - ${data.room}</div>`;
+    });
+</script>
+</body>
+</html>
